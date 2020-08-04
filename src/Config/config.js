@@ -6,6 +6,7 @@ export default {
   width: 800,
   height: 600,
   pixelArt: true,
+  // roundPixels: true,
   physics: {
     default: 'arcade',
     arcade: {

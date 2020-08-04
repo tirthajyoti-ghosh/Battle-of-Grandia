@@ -18,11 +18,16 @@ export default class WorldScene extends Phaser.Scene {
 
     this.player = this.physics.add.sprite(25, 25, 'player', 0);
 
-    this.player.setScale(0.2);
+    this.player.setScale(0.15);
 
     this.physics.world.bounds.width = map.widthInPixels;
     this.physics.world.bounds.height = map.heightInPixels;
     this.player.setCollideWorldBounds(true);
+
+    this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+
+    this.cameras.main.startFollow(this.player, true);
+    this.cameras.main.roundPixels = true;
 
     this.physics.add.collider(this.player, obstacles);
 
@@ -61,6 +66,18 @@ export default class WorldScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
+
+    this.spawns = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
+
+    for(var i = 0; i < 30; i++) {
+        var x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+        var y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+        // parameters are x, y, width, height
+        this.spawns.create(x, y, 20, 20);            
+    }        
+
+    this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
+
   }
 
   update() {
@@ -68,18 +85,18 @@ export default class WorldScene extends Phaser.Scene {
  
     // Horizontal movement
     if (this.inputKeys.left.isDown) {
-      this.player.body.setVelocityX(-80);
+      this.player.body.setVelocityX(-100);
     }
     else if (this.inputKeys.right.isDown) {
-      this.player.body.setVelocityX(80);
+      this.player.body.setVelocityX(100);
     }
 
     // Vertical movement
     if (this.inputKeys.up.isDown) {
-      this.player.body.setVelocityY(-80);
+      this.player.body.setVelocityY(-100);
     }
     else if (this.inputKeys.down.isDown) {
-      this.player.body.setVelocityY(80);
+      this.player.body.setVelocityY(100);
     }  
 
     if (this.inputKeys.left.isDown) {

@@ -24,12 +24,13 @@ export default class WorldScene extends Phaser.Scene {
     this.physics.world.bounds.height = map.heightInPixels;
     this.player.setCollideWorldBounds(true);
 
+    this.physics.add.collider(this.player, obstacles);
+    
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
     this.cameras.main.startFollow(this.player, true);
     this.cameras.main.roundPixels = true;
 
-    this.physics.add.collider(this.player, obstacles);
 
     this.inputKeys = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,

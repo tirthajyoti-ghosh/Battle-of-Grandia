@@ -99,6 +99,10 @@ export default class PreloaderScene extends Phaser.Scene {
     
     // map in json format
     this.load.tilemapTiledJSON('map', '../src/assets/map/map.json');
+
+    // hero spritesheet
+    this.load.spritesheet('player', '../src/assets/hero_sprite.png', { frameWidth: 256, frameHeight: 256 });
+
   }
  
   create () {

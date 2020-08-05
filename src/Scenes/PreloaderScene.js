@@ -10,7 +10,7 @@ export default class PreloaderScene extends Phaser.Scene {
   }
    
   ready () {
-    // this.scene.start('Battle');
+    this.scene.start('World');
     this.readyCount++;
     if (this.readyCount === 2) {
       this.scene.start('Title');
@@ -111,8 +111,8 @@ export default class PreloaderScene extends Phaser.Scene {
     // warrior spritesheet
     this.load.spritesheet('warrior', '../src/assets/attack_sprite.png', { frameWidth: 24, frameHeight: 24 });
 
-  }
- 
-  create () {
+    // kraken spritesheet
+    this.load.spritesheet('kraken', '../src/assets/kraken.png', { frameWidth: 96, frameHeight: 128 });
+
   }
 };

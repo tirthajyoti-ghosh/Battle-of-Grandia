@@ -4,6 +4,20 @@ export default class WorldScene extends Phaser.Scene {
   constructor () {
     super('World');
   }
+
+  onMeetEnemy(player, zone) {
+    // we move the zone to some other location
+
+    zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+    zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);  
+
+    // shake the world
+    this.cameras.main.shake(3000);
+
+    // start battle
+
+    this.scene.switch('Battle');
+  }
  
   create () {
     var map = this.make.tilemap({ key: 'map' });
@@ -27,6 +41,7 @@ export default class WorldScene extends Phaser.Scene {
     this.physics.add.collider(this.player, obstacles);
     
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+    this.cameras.main.roundPixels = true;
 
     this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
     this.cameras.main.startFollow(this.cameraDolly);

@@ -35,7 +35,6 @@ export default class BattleScene extends Phaser.Scene {
       repeat: -1
     });
       
-    // animation with key 'right'
     this.anims.create({
       key: 'right',
       frames: this.anims.generateFrameNumbers('warrior', { frames: [12, 13, 14, 15] }),
@@ -56,9 +55,20 @@ export default class BattleScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
+
+    this.kraken = this.physics.add.sprite(400, 320, 'kraken', 6);
+
+    this.anims.create({
+      key: 'idle',
+      frames: this.anims.generateFrameNumbers('kraken', { frames: [6, 7, 8]}),
+      frameRate: 10,
+      repeat: -1
+    });
   }
   
   update() {
+    this.kraken.anims.play('idle', true);
+
     this.warrior.body.setVelocity(0);
  
     // Horizontal movement

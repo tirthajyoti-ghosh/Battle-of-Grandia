@@ -5,18 +5,14 @@ export default class WorldScene extends Phaser.Scene {
     super('World');
   }
 
-  onMeetEnemy(player, zone) {
-    // we move the zone to some other location
-
-    zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
-    zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);  
+  onMeetEnemy() {
 
     // shake the world
     this.cameras.main.shake(3000);
 
     // start battle
 
-    this.scene.switch('Battle');
+    this.scene.start('Battle');
   }
  
   create () {
@@ -31,7 +27,6 @@ export default class WorldScene extends Phaser.Scene {
     obstacles.setCollisionByExclusion([-1]);
 
     this.player = this.physics.add.sprite(25, 25, 'player', 4);
-
     this.player.setScale(1.5);
 
     this.physics.world.bounds.width = map.widthInPixels;

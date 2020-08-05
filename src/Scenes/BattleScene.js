@@ -1,8 +1,18 @@
 import 'phaser';
+import Fireball from '../Fireball';
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
     super('Battle');
+  }
+
+  onAttack(warrior, kraken) {
+    console.log('attacked');
+    
+  }
+
+  shootFireball() {
+    const fireball = new Fireball(this);
   }
 
   create() {
@@ -57,6 +67,9 @@ export default class BattleScene extends Phaser.Scene {
     });
 
     this.kraken = this.physics.add.sprite(400, 320, 'kraken', 6);
+    this.kraken.body.immovable = true;
+    this.kraken.body.moves = false;
+    this.kraken.setScale(0.9);
 
     this.anims.create({
       key: 'idle',
@@ -64,6 +77,10 @@ export default class BattleScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
+
+    this.physics.add.collider(this.warrior, this.kraken, this.onAttack, false, this);  
+
+    this.projectiles = this.add.group();
   }
   
   update() {
@@ -101,6 +118,24 @@ export default class BattleScene extends Phaser.Scene {
     }
     else {
       this.warrior.anims.stop();
+      this.warrior.setFrame(0);
+    }
+
+    const value = Phaser.Math.Between(0, 360);
+
+    const dist = Phaser.Math.Between(0, 640);
+        // vector to edge of rectangle
+        // const vec = this.physics.velocityFromAngle(value, 1);
+  
+        // draw a circle to show the position
+        // this.add.circle(400 + vec.x, 320 + vec.y, 5, 0xffffff, 1);
+
+    this.shootFireball();
+
+    for (let i = 0; i < this.projectiles.getChildren().length; i++) {
+      const beam = this.projectiles.getChildren()[i];    
+
+      beam.update();
     }
   }
 }

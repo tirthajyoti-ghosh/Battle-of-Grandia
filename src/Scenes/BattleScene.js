@@ -15,11 +15,11 @@ export default class BattleScene extends Phaser.Scene {
     var border = battleMap.createStaticLayer('border', tiles, 0, 0);
     border.setCollisionByExclusion([-1]);
 
-    this.player = this.physics.add.sprite(400, 590, 'player', 4);
+    this.warrior = this.physics.add.sprite(400, 590, 'warrior', 4);
 
-    this.player.setScale(0.15);
+    this.warrior.setScale(1.5);
 
-    this.physics.add.collider(this.player, border);
+    this.physics.add.collider(this.warrior, border);
     
     this.inputKeys = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -30,7 +30,7 @@ export default class BattleScene extends Phaser.Scene {
 
     this.anims.create({
       key: 'left',
-      frames: this.anims.generateFrameNumbers('player', { frames: [8, 9, 10, 11]}),
+      frames: this.anims.generateFrameNumbers('warrior', { frames: [8, 9, 10, 11]}),
       frameRate: 10,
       repeat: -1
     });
@@ -38,59 +38,59 @@ export default class BattleScene extends Phaser.Scene {
     // animation with key 'right'
     this.anims.create({
       key: 'right',
-      frames: this.anims.generateFrameNumbers('player', { frames: [12, 13, 14, 15] }),
+      frames: this.anims.generateFrameNumbers('warrior', { frames: [12, 13, 14, 15] }),
       frameRate: 10,
       repeat: -1
     });
 
     this.anims.create({
       key: 'up',
-      frames: this.anims.generateFrameNumbers('player', { frames: [4, 5, 6, 7]}),
+      frames: this.anims.generateFrameNumbers('warrior', { frames: [4, 5, 6, 7]}),
       frameRate: 10,
       repeat: -1
     });
 
     this.anims.create({
       key: 'down',
-      frames: this.anims.generateFrameNumbers('player', { frames: [0, 1, 2, 3] }),
+      frames: this.anims.generateFrameNumbers('warrior', { frames: [0, 1, 2, 3] }),
       frameRate: 10,
       repeat: -1
     });
   }
   
   update() {
-    this.player.body.setVelocity(0);
+    this.warrior.body.setVelocity(0);
  
     // Horizontal movement
     if (this.inputKeys.left.isDown) {
-      this.player.body.setVelocityX(-100);
+      this.warrior.body.setVelocityX(-100);
     }
     else if (this.inputKeys.right.isDown) {
-      this.player.body.setVelocityX(100);
+      this.warrior.body.setVelocityX(100);
     }
 
     // Vertical movement
     if (this.inputKeys.up.isDown) {
-      this.player.body.setVelocityY(-100);
+      this.warrior.body.setVelocityY(-100);
     }
     else if (this.inputKeys.down.isDown) {
-      this.player.body.setVelocityY(100);
+      this.warrior.body.setVelocityY(100);
     }  
 
     if (this.inputKeys.left.isDown) {
-      this.player.anims.play('left', true);
+      this.warrior.anims.play('left', true);
     }
     else if (this.inputKeys.right.isDown) {
-      this.player.anims.play('right', true);
+      this.warrior.anims.play('right', true);
     }
     else if (this.inputKeys.up.isDown) {
-      this.player.anims.play('up', true);
+      this.warrior.anims.play('up', true);
     }
     else if (this.inputKeys.down.isDown) {
-      this.player.anims.play('down', true);
+      this.warrior.anims.play('down', true);
     }
     else {
-      this.player.anims.stop();
+      this.warrior.anims.stop();
     }
   }
 }

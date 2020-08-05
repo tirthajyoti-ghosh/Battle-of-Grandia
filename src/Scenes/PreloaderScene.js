@@ -106,7 +106,10 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.tilemapTiledJSON('battle-map', '../src/assets/map/battle.json');
 
     // hero spritesheet
-    this.load.spritesheet('player', '../src/assets/hero_sprite.png', { frameWidth: 256, frameHeight: 256 });
+    this.load.spritesheet('player', '../src/assets/hero_sprite.png', { frameWidth: 16, frameHeight: 24 });
+
+    // warrior spritesheet
+    this.load.spritesheet('warrior', '../src/assets/attack_sprite.png', { frameWidth: 24, frameHeight: 24 });
 
   }
  

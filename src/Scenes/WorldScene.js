@@ -16,9 +16,9 @@ export default class WorldScene extends Phaser.Scene {
     var obstacles = map.createStaticLayer('obstacles', tiles, 0, 0);
     obstacles.setCollisionByExclusion([-1]);
 
-    this.player = this.physics.add.sprite(25, 25, 'player', 0);
+    this.player = this.physics.add.sprite(25, 25, 'player', 4);
 
-    this.player.setScale(0.15);
+    this.player.setScale(1.5);
 
     this.physics.world.bounds.width = map.widthInPixels;
     this.physics.world.bounds.height = map.heightInPixels;
@@ -54,14 +54,14 @@ export default class WorldScene extends Phaser.Scene {
     });
 
     this.anims.create({
-      key: 'up',
+      key: 'down',
       frames: this.anims.generateFrameNumbers('player', { frames: [4, 5, 6, 7]}),
       frameRate: 10,
       repeat: -1
     });
 
     this.anims.create({
-      key: 'down',
+      key: 'up',
       frames: this.anims.generateFrameNumbers('player', { frames: [0, 1, 2, 3] }),
       frameRate: 10,
       repeat: -1
@@ -117,6 +117,7 @@ export default class WorldScene extends Phaser.Scene {
     }
     else {
       this.player.anims.stop();
+      this.player.setFrame(4);
     }
   }
 };

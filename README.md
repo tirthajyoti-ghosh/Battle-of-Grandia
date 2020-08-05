@@ -56,4 +56,6 @@ you should be able to open `http://mycoolserver.com/index.html` and play your ga
 
 ## Acknowledgement
 
-hero sprite - https://opengameart.org/content/hero-0
+hero sprite - https://opengameart.org/content/rpg-character-knight-nes
+kraken sprite - https://opengameart.org/content/kraken
+fireball animation - https://opengameart.org/content/spell-animation-spritesheets

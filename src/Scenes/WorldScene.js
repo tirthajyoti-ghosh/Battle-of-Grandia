@@ -28,9 +28,8 @@ export default class WorldScene extends Phaser.Scene {
     
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-    this.cameras.main.startFollow(this.player, true);
-    this.cameras.main.roundPixels = true;
-
+    this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
+    this.cameras.main.startFollow(this.cameraDolly);
 
     this.inputKeys = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -83,6 +82,9 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   update() {
+    this.cameraDolly.x = Math.floor(this.player.x);
+    this.cameraDolly.y = Math.floor(this.player.y);
+
     this.player.body.setVelocity(0);
  
     // Horizontal movement

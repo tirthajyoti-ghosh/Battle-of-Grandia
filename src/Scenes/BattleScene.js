@@ -12,10 +12,13 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   winBanner() {
+    this.winText = this.add.text(330, 115, 'You Won!!', { fontSize: '26px', fill: '#000' });
     var banner = this.add.graphics();
 
-    banner.fillStyle(0x222222, 0.8);
-    banner.fillRect(240, 290, 320, 50);
+    banner.lineStyle(1, 0xffffff, 0.8);
+    banner.fillStyle(0x031f4c, 0.3);        
+    banner.strokeRect(250, 100, 300, 60);
+    banner.fillRect(250, 100, 300, 60);
   }
 
   shootFireball(angle) {
@@ -33,12 +36,12 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   krakenDied() {
-    this.winText = this.add.text(400, 16, 'You Won!!', { fontSize: '16px', fill: '#000' });
+    this.winBanner();   
+
     this.explosion.visible = true;
     this.explosion.anims.play('explode', true);
 
-    this.time.delayedCall(3000, () => {   
-      this.winText.destroy();   
+    this.time.delayedCall(5000, () => {   
       this.scene.start('World');
     }, [], this);
   }
@@ -89,8 +92,7 @@ export default class BattleScene extends Phaser.Scene {
       frameRate: 5,
       repeat: 1,
       hideOnComplete: true
-    });
-    
+    });    
   }
 
   damageWarrior(projectile, warrior) {

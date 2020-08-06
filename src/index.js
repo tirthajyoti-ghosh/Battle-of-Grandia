@@ -3,6 +3,7 @@ import config from './Config/config';
 import Model from './Model';
 import WorldScene from './Scenes/WorldScene';
 import BattleScene from './Scenes/BattleScene';
+import GameOverScene from './Scenes/GameOverScene';
 import BootScene from './Scenes/BootScene';
 import PreloaderScene from './Scenes/PreloaderScene';
 import TitleScene from './Scenes/TitleScene';
@@ -23,6 +24,7 @@ class Game extends Phaser.Game {
     this.scene.add('Credits', CreditsScene);
     this.scene.add('World', WorldScene);
     this.scene.add('Battle', BattleScene);
+    this.scene.add('GameOver', GameOverScene);
     this.scene.start('Boot');
   }
 }

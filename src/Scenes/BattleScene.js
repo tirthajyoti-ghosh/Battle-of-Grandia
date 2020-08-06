@@ -21,7 +21,7 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   warriorDied() {
-    this.scene.pause();
+    this.scene.start('GameOver');
   }
 
   create() {
@@ -34,7 +34,7 @@ export default class BattleScene extends Phaser.Scene {
     var border = battleMap.createStaticLayer('border', tiles, 0, 0);
     border.setCollisionByExclusion([-1]);
 
-    this.warrior = new Warrior(this);
+    this.warrior = new Warrior(this, 400, 590);
     
     this.physics.add.collider(this.warrior, border);
     

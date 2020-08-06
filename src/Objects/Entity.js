@@ -8,5 +8,7 @@ export default class Entity extends Phaser.GameObjects.Sprite {
 
     scene.physics.world.enableBody(this);
     this.setScale(scale);
+
+    this.body.setCollideWorldBounds(true);
   }
 }

@@ -31,7 +31,7 @@ export default class GameOverScene extends Phaser.Scene {
     );
     this.title.setOrigin(0.5);
 
-    this.gameButton = new Button(
+    this.topScore = new Button(
       this,
       config.width / 2,
       config.height - 350,
@@ -48,7 +48,7 @@ export default class GameOverScene extends Phaser.Scene {
       'blueButton1',
       'blueButton2',
       'Play Again',
-      'Game',
+      'World',
     );
   }
 

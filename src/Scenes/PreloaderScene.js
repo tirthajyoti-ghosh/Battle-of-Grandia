@@ -10,7 +10,6 @@ export default class PreloaderScene extends Phaser.Scene {
   }
    
   ready () {
-    this.scene.start('Battle');
     this.readyCount++;
     if (this.readyCount === 2) {
       this.scene.start('Title');
@@ -106,10 +105,7 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.tilemapTiledJSON('battle-map', '../src/assets/map/battle.json');
 
     // hero spritesheet
-    this.load.spritesheet('player', '../src/assets/hero_sprite.png', { frameWidth: 16, frameHeight: 24 });
-
-    // warrior spritesheet
-    this.load.spritesheet('warrior', '../src/assets/attack_sprite.png', { frameWidth: 24, frameHeight: 24 });
+    this.load.spritesheet('warrior', '../src/assets/hero_sprite.png', { frameWidth: 32, frameHeight: 64 });
 
     // fireball image
     this.load.image('fireball', '../src/assets/fireball.png');

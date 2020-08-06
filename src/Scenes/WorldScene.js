@@ -1,4 +1,5 @@
 import 'phaser';
+import Warrior from '../Objects/Warrior';
  
 export default class WorldScene extends Phaser.Scene {
   constructor () {
@@ -26,19 +27,17 @@ export default class WorldScene extends Phaser.Scene {
     var obstacles = map.createStaticLayer('obstacles', tiles, 0, 0);
     obstacles.setCollisionByExclusion([-1]);
 
-    this.player = this.physics.add.sprite(25, 25, 'player', 4);
-    this.player.setScale(1.5);
+    this.warrior = new Warrior(this, 25, 25);
 
     this.physics.world.bounds.width = map.widthInPixels;
     this.physics.world.bounds.height = map.heightInPixels;
-    this.player.setCollideWorldBounds(true);
 
-    this.physics.add.collider(this.player, obstacles);
+    this.physics.add.collider(this.warrior, obstacles);
     
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.roundPixels = true;
 
-    this.cameraDolly = new Phaser.Geom.Point(this.player.x, this.player.y);
+    this.cameraDolly = new Phaser.Geom.Point(this.warrior.x, this.warrior.y);
     this.cameras.main.startFollow(this.cameraDolly);
 
     this.inputKeys = this.input.keyboard.addKeys({
@@ -48,34 +47,7 @@ export default class WorldScene extends Phaser.Scene {
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
 
-    this.anims.create({
-      key: 'left',
-      frames: this.anims.generateFrameNumbers('player', { frames: [8, 9, 10, 11]}),
-      frameRate: 10,
-      repeat: -1
-    });
-      
-    // animation with key 'right'
-    this.anims.create({
-      key: 'right',
-      frames: this.anims.generateFrameNumbers('player', { frames: [12, 13, 14, 15] }),
-      frameRate: 10,
-      repeat: -1
-    });
-
-    this.anims.create({
-      key: 'down',
-      frames: this.anims.generateFrameNumbers('player', { frames: [4, 5, 6, 7]}),
-      frameRate: 10,
-      repeat: -1
-    });
-
-    this.anims.create({
-      key: 'up',
-      frames: this.anims.generateFrameNumbers('player', { frames: [0, 1, 2, 3] }),
-      frameRate: 10,
-      repeat: -1
-    });
+    this.warrior.createAnimation();
 
     this.spawns = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
 
@@ -87,47 +59,47 @@ export default class WorldScene extends Phaser.Scene {
       this.spawns.create(x, y, 50, 50);            
     }        
 
-    this.physics.add.overlap(this.player, this.spawns, this.onMeetEnemy, false, this);
+    this.physics.add.overlap(this.warrior, this.spawns, this.onMeetEnemy, false, this);
 
   }
 
   update() {
-    this.cameraDolly.x = Math.floor(this.player.x);
-    this.cameraDolly.y = Math.floor(this.player.y);
+    this.cameraDolly.x = Math.floor(this.warrior.x);
+    this.cameraDolly.y = Math.floor(this.warrior.y);
 
-    this.player.body.setVelocity(0);
+    this.warrior.body.setVelocity(0);
  
     // Horizontal movement
     if (this.inputKeys.left.isDown) {
-      this.player.body.setVelocityX(-100);
+      this.warrior.body.setVelocityX(-100);
     }
     else if (this.inputKeys.right.isDown) {
-      this.player.body.setVelocityX(100);
+      this.warrior.body.setVelocityX(100);
     }
 
     // Vertical movement
     if (this.inputKeys.up.isDown) {
-      this.player.body.setVelocityY(-100);
+      this.warrior.body.setVelocityY(-100);
     }
     else if (this.inputKeys.down.isDown) {
-      this.player.body.setVelocityY(100);
+      this.warrior.body.setVelocityY(100);
     }  
 
     if (this.inputKeys.left.isDown) {
-      this.player.anims.play('left', true);
+      this.warrior.anims.play('left', true);
     }
     else if (this.inputKeys.right.isDown) {
-      this.player.anims.play('right', true);
+      this.warrior.anims.play('right', true);
     }
     else if (this.inputKeys.up.isDown) {
-      this.player.anims.play('up', true);
+      this.warrior.anims.play('up', true);
     }
     else if (this.inputKeys.down.isDown) {
-      this.player.anims.play('down', true);
+      this.warrior.anims.play('down', true);
     }
     else {
-      this.player.anims.stop();
-      this.player.setFrame(4);
+      this.warrior.anims.stop();
+      this.warrior.setFrame(0);
     }
   }
 };

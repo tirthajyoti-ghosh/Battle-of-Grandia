@@ -11,8 +11,8 @@ export default class BattleScene extends Phaser.Scene {
     
   }
 
-  shootFireball() {
-    const fireball = new Fireball(this);
+  shootFireball(angle) {
+    const fireball = new Fireball(this, angle);
   }
 
   create() {
@@ -122,15 +122,13 @@ export default class BattleScene extends Phaser.Scene {
     }
 
     const value = Phaser.Math.Between(0, 360);
-
-    const dist = Phaser.Math.Between(0, 640);
         // vector to edge of rectangle
         // const vec = this.physics.velocityFromAngle(value, 1);
   
         // draw a circle to show the position
         // this.add.circle(400 + vec.x, 320 + vec.y, 5, 0xffffff, 1);
 
-    this.shootFireball();
+    // this.shootFireball(value);
 
     for (let i = 0; i < this.projectiles.getChildren().length; i++) {
       const beam = this.projectiles.getChildren()[i];    

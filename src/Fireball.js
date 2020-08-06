@@ -1,19 +1,24 @@
 import 'phaser';
+import config from './Config/config';
 
 export default class Fireball extends Phaser.GameObjects.Sprite {
-  constructor(scene){
+  constructor(scene, angle){
     super(scene, 400, 320, 'fireball');
 
     scene.projectiles.add(this);
 
+    // scene.add.existing(this);
+
     scene.physics.world.enableBody(this);
     this.setScale(0.3);
-    this.body.velocity.x = -Phaser.Math.Between(50, 100);
-    this.body.velocity.y = -Phaser.Math.Between(50, 100);
+
+    const vec = scene.physics.velocityFromAngle(angle, 320);
+    this.body.velocity.x = vec.x;
+    this.body.velocity.y = vec.y;
   }
 
   update() {
-    if ((this.x < 100) && (this.y < 100)) {
+    if ((this.x < 100) || (this.y < 100)) {
       this.destroy();
     }
   }

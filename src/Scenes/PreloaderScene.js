@@ -110,6 +110,12 @@ export default class PreloaderScene extends Phaser.Scene {
     // fireball image
     this.load.image('fireball', '../src/assets/fireball.png');
 
+    // sword flash image
+    this.load.spritesheet('explosion', '../src/assets/explosion.png', { frameWidth: 400, frameHeight: 400 });
+
+    // fireball image
+    this.load.spritesheet('sword_flash', '../src/assets/sword_flash.png', { frameWidth: 33, frameHeight: 33 });
+
     // kraken spritesheet
     this.load.spritesheet('kraken', '../src/assets/kraken.png', { frameWidth: 96, frameHeight: 128 });
 

@@ -16,12 +16,17 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   onAttack(warrior, kraken) {
-    console.log('attacked');
-    
+    if (Phaser.Input.Keyboard.JustDown(this.space)) {
+      this.krakenHealth -= 100;  
+    }    
   }
 
   warriorDied() {
     this.scene.start('GameOver');
+  }
+
+  krakenDied() {
+    
   }
 
   create() {
@@ -45,7 +50,9 @@ export default class BattleScene extends Phaser.Scene {
       down: Phaser.Input.Keyboard.KeyCodes.S,
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
-    });    
+    });   
+    
+    this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     
     this.kraken = new Kraken(this);
 
@@ -61,9 +68,7 @@ export default class BattleScene extends Phaser.Scene {
   damageWarrior(projectile, warrior) {
     projectile.destroy();
 
-    this.warriorHealth -= 10;
-    console.log(this.warriorHealth);
-    
+    this.warriorHealth -= 10;    
   }
   
   update(time) {
@@ -118,6 +123,10 @@ export default class BattleScene extends Phaser.Scene {
 
     if(this.warriorHealth <= 0) {
       this.warriorDied();
+    }
+
+    if(this.krakenHealth <= 0) {
+      this.krakenDied();
     }
   }
 }

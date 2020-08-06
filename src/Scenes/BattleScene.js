@@ -1,9 +1,18 @@
 import 'phaser';
 import Fireball from '../Fireball';
+import Warrior from '../Objects/Warrior';
+import Kraken from '../Objects/Kraken';
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
     super('Battle');
+
+    this.warriorHealth = 100;
+    this.krakenHealth = 1000;
+  }
+
+  shootFireball(angle) {
+    const fireball = new Fireball(this, angle);
   }
 
   onAttack(warrior, kraken) {
@@ -11,8 +20,8 @@ export default class BattleScene extends Phaser.Scene {
     
   }
 
-  shootFireball(angle) {
-    const fireball = new Fireball(this, angle);
+  warriorDied() {
+    this.scene.pause();
   }
 
   create() {
@@ -25,10 +34,8 @@ export default class BattleScene extends Phaser.Scene {
     var border = battleMap.createStaticLayer('border', tiles, 0, 0);
     border.setCollisionByExclusion([-1]);
 
-    this.warrior = this.physics.add.sprite(400, 590, 'warrior', 4);
-
-    this.warrior.setScale(1.5);
-
+    this.warrior = new Warrior(this);
+    
     this.physics.add.collider(this.warrior, border);
     
     this.inputKeys = this.input.keyboard.addKeys({
@@ -65,25 +72,27 @@ export default class BattleScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
-
-    this.kraken = this.physics.add.sprite(400, 320, 'kraken', 6);
-    this.kraken.body.immovable = true;
-    this.kraken.body.moves = false;
-    this.kraken.setScale(0.9);
-
-    this.anims.create({
-      key: 'idle',
-      frames: this.anims.generateFrameNumbers('kraken', { frames: [6, 7, 8]}),
-      frameRate: 10,
-      repeat: -1
-    });
+    
+    this.kraken = new Kraken(this);
 
     this.physics.add.collider(this.warrior, this.kraken, this.onAttack, false, this);  
 
+    this.lastFired = 0;
     this.projectiles = this.add.group();
+
+    this.physics.add.collider(this.projectiles, this.warrior, this.damageWarrior, false, this);
+    
+  }
+
+  damageWarrior(projectile, warrior) {
+    projectile.destroy();
+
+    this.warriorHealth -= 10;
+    console.log(this.warriorHealth);
+    
   }
   
-  update() {
+  update(time) {
     this.kraken.anims.play('idle', true);
 
     this.warrior.body.setVelocity(0);
@@ -121,19 +130,20 @@ export default class BattleScene extends Phaser.Scene {
       this.warrior.setFrame(0);
     }
 
-    const value = Phaser.Math.Between(0, 360);
-        // vector to edge of rectangle
-        // const vec = this.physics.velocityFromAngle(value, 1);
-  
-        // draw a circle to show the position
-        // this.add.circle(400 + vec.x, 320 + vec.y, 5, 0xffffff, 1);
-
-    // this.shootFireball(value);
+    if (time > this.lastFired){
+      const value = Phaser.Math.Between(0, 360);
+      this.shootFireball(value);
+      this.lastFired = time + 250;
+    }    
 
     for (let i = 0; i < this.projectiles.getChildren().length; i++) {
-      const beam = this.projectiles.getChildren()[i];    
+      const fireball = this.projectiles.getChildren()[i];    
 
-      beam.update();
+      fireball.update();
+    }
+
+    if(this.warriorHealth <= 0) {
+      this.warriorDied();
     }
   }
 }

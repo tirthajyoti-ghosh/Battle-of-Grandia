@@ -2,10 +2,20 @@ import 'phaser';
 import Fireball from '../Fireball';
 import Warrior from '../Objects/Warrior';
 import Kraken from '../Objects/Kraken';
+import LocalStorage from '../Objects/LocalStorage';
+import API from '../Objects/API';
 
 export default class BattleScene extends Phaser.Scene {
   constructor() {
     super('Battle');
+  }
+
+  saveScore() {
+    let updatedScore = parseInt(LocalStorage.readScore(), 10) + 100;
+    
+    LocalStorage.saveScore(`${updatedScore}`);
+    
+    API.postScores(LocalStorage.readName(), updatedScore);
   }
 
   showWinBanner() {
@@ -39,14 +49,12 @@ export default class BattleScene extends Phaser.Scene {
 
   krakenDied() {
     this.showWinBanner();   
-
-    this.projectiles.destroy();
-
+    
     this.explosion.visible = true;
     this.explosion.anims.play('explode', true);
-
-    this.time.delayedCall(5000, () => {  
-
+    
+    this.time.delayedCall(3000, () => {  
+      this.saveScore();
       this.scene.stop('Battle');
       this.scene.start('World');
     }, [], this);

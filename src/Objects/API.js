@@ -1,3 +1,7 @@
+import 'regenerator-runtime';
+
+const fetch = require('node-fetch');
+
 const API = (() => {
   async function getScores() {
     try {

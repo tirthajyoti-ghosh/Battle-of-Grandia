@@ -76,6 +76,8 @@ export default class BattleScene extends Phaser.Scene {
     border.setCollisionByExclusion([-1]);
     
     this.warrior = new Warrior(this, 400, 590);
+
+    this.warriorHealthText = this.add.text(350, 590, `Health: ${this.warriorHealth}`, { fontSize: '16px', fill: '#000' });
     
     this.physics.add.collider(this.warrior, border);
     
@@ -91,6 +93,7 @@ export default class BattleScene extends Phaser.Scene {
     this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     
     this.kraken = new Kraken(this, 400, 320);
+    this.krakenHealthText = this.add.text(300, 220, `Health: ${this.krakenHealth}`, { fontSize: '26px', fill: '#000' });
     
     this.physics.add.collider(this.warrior, this.kraken, this.onAttack, false, this);  
     
@@ -136,6 +139,12 @@ export default class BattleScene extends Phaser.Scene {
   }
   
   update(time) {
+    this.warriorHealthText.x = this.warrior.x - 50;
+    this.warriorHealthText.y = this.warrior.y - 45;
+    this.warriorHealthText.text = `Health: ${this.warriorHealth}`;
+
+    this.krakenHealthText.text = `Health: ${this.krakenHealth}`;
+
     this.kraken.anims.play('idle', true);
 
     this.warrior.body.setVelocity(0);

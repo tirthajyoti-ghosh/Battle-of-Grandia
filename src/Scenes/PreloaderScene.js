@@ -89,7 +89,6 @@ export default class PreloaderScene extends Phaser.Scene {
     this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
    
     // load assets needed in our game
-    this.load.image('phaserLogo', '../src/assets/logo.png');
     this.load.image('box', '../src/assets/ui/grey_box.png');
     this.load.image('blueButton1', '../src/assets/ui/blue_button1.png');
     this.load.image('blueButton2', '../src/assets/ui/blue_button2.png');
@@ -111,10 +110,10 @@ export default class PreloaderScene extends Phaser.Scene {
     // fireball image
     this.load.image('fireball', '../src/assets/fireball.png');
 
-    // sword flash image
+    // explosion image
     this.load.spritesheet('explosion', '../src/assets/explosion.png', { frameWidth: 400, frameHeight: 400 });
 
-    // fireball image
+    // sword flash image
     this.load.spritesheet('sword_flash', '../src/assets/sword_flash.png', { frameWidth: 33, frameHeight: 33 });
 
     // kraken spritesheet

@@ -6,29 +6,31 @@ import Kraken from '../Objects/Kraken';
 export default class BattleScene extends Phaser.Scene {
   constructor() {
     super('Battle');
-
-    this.warriorHealth = 100;
-    this.krakenHealth = 1000;
   }
 
-  winBanner() {
+  showWinBanner() {
     this.winText = this.add.text(330, 115, 'You Won!!', { fontSize: '26px', fill: '#000' });
-    var banner = this.add.graphics();
+    this.banner = this.add.graphics();
 
-    banner.lineStyle(1, 0xffffff, 0.8);
-    banner.fillStyle(0x031f4c, 0.3);        
-    banner.strokeRect(250, 100, 300, 60);
-    banner.fillRect(250, 100, 300, 60);
+    this.banner.lineStyle(1, 0xffffff, 0.8);
+    this.banner.fillStyle(0x031f4c, 0.3);        
+    this.banner.strokeRect(250, 100, 300, 60);
+    this.banner.fillRect(250, 100, 300, 60);
   }
 
   shootFireball(angle) {
     const fireball = new Fireball(this, angle);
   }
 
-  onAttack(warrior, kraken) {
+  onAttack(warrior, kraken) {    
     if (Phaser.Input.Keyboard.JustDown(this.space)) {
       this.krakenHealth -= 100;  
-    }    
+
+      this.swordFlash.visible = true;
+      this.warrior.anims.play('flash', true);
+    } else {
+      this.swordFlash.visible = false;
+    }
   }
 
   warriorDied() {
@@ -36,17 +38,24 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   krakenDied() {
-    this.winBanner();   
+    this.showWinBanner();   
+
+    this.projectiles.destroy();
 
     this.explosion.visible = true;
     this.explosion.anims.play('explode', true);
 
-    this.time.delayedCall(5000, () => {   
+    this.time.delayedCall(5000, () => {  
+
+      this.scene.stop('Battle');
       this.scene.start('World');
     }, [], this);
   }
   
   create() {
+    this.warriorHealth = 100;
+    this.krakenHealth = 1000;
+
     var battleMap = this.make.tilemap({ key: 'battle-map' });
     
     var tiles = battleMap.addTilesetImage('spritesheet', 'tiles');
@@ -90,9 +99,23 @@ export default class BattleScene extends Phaser.Scene {
         end: 15
       }),
       frameRate: 5,
-      repeat: 1,
+      repeat: 0,
       hideOnComplete: true
-    });    
+    }); 
+
+    this.swordFlash = this.add.sprite(this.warrior.x + 20, this.warrior.y + 20, 'sword_flash');
+    this.swordFlash.visible = false;
+    
+    this.anims.create({
+      key: 'flash',
+      frames: this.anims.generateFrameNumbers('sword_flash', {
+        start: 0,
+        end: 4
+      }),
+      frameRate: 10,
+      repeat: 0,
+      hideOnComplete: true
+    });     
   }
 
   damageWarrior(projectile, warrior) {

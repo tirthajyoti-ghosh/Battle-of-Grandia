@@ -36,8 +36,10 @@ export default class BattleScene extends Phaser.Scene {
     if (Phaser.Input.Keyboard.JustDown(this.space)) {
       this.krakenHealth -= 100;  
 
+      this.swordFlash.x = this.warrior.x + 20;
+      this.swordFlash.y = this.warrior.y - 20;
       this.swordFlash.visible = true;
-      this.warrior.anims.play('flash', true);
+      this.swordFlash.anims.play('flash', true);
     } else {
       this.swordFlash.visible = false;
     }
@@ -112,6 +114,7 @@ export default class BattleScene extends Phaser.Scene {
     }); 
 
     this.swordFlash = this.add.sprite(this.warrior.x + 20, this.warrior.y + 20, 'sword_flash');
+    this.swordFlash.setScale(1.5);
     this.swordFlash.visible = false;
     
     this.anims.create({
@@ -120,7 +123,7 @@ export default class BattleScene extends Phaser.Scene {
         start: 0,
         end: 4
       }),
-      frameRate: 10,
+      frameRate: 5,
       repeat: 0,
       hideOnComplete: true
     });     

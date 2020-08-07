@@ -34,7 +34,7 @@ export default class BattleScene extends Phaser.Scene {
 
   onAttack(warrior, kraken) {    
     if (Phaser.Input.Keyboard.JustDown(this.space)) {
-      this.krakenHealth -= 100;  
+      this.krakenHealth -= 20;  
 
       this.swordFlash.x = this.warrior.x + 20;
       this.swordFlash.y = this.warrior.y - 20;
@@ -43,6 +43,12 @@ export default class BattleScene extends Phaser.Scene {
     } else {
       this.swordFlash.visible = false;
     }
+  }
+
+  damageWarrior(projectile, warrior) {
+    projectile.destroy();
+
+    this.warriorHealth -= 10;    
   }
 
   warriorDied() {
@@ -130,12 +136,6 @@ export default class BattleScene extends Phaser.Scene {
       repeat: 0,
       hideOnComplete: true
     });     
-  }
-
-  damageWarrior(projectile, warrior) {
-    projectile.destroy();
-
-    this.warriorHealth -= 10;    
   }
   
   update(time) {

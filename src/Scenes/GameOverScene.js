@@ -38,7 +38,7 @@ export default class GameOverScene extends Phaser.Scene {
       'blueButton1',
       'blueButton2',
       'Top Score',
-      'Leaderboard',
+      'LeaderBoard',
     );
 
     this.gameButton = new Button(

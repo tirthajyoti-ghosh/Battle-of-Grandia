@@ -63,8 +63,9 @@ export default class WorldScene extends Phaser.Scene {
       var x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       var y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
 
-      let kraken = new Kraken(this, x, y, 0.2);
-      kraken.setScale(0.1);
+      let kraken = new Kraken(this, x, y);
+      kraken.setVisible(false);
+
       // parameters are x, y, width, height
       this.spawns.add(new Kraken(this, x, y));    
     }        
@@ -74,6 +75,12 @@ export default class WorldScene extends Phaser.Scene {
   }
 
   update() {
+    for(var i = 0; i < 30; i++) {
+      this.spawns.getChildren()[i].setVisible(true);
+      this.spawns.getChildren()[i].setScale(0.4);
+      this.spawns.getChildren()[i].anims.play('rotate', true);
+    }
+
     this.cameraDolly.x = Math.floor(this.warrior.x);
     this.cameraDolly.y = Math.floor(this.warrior.y);
 

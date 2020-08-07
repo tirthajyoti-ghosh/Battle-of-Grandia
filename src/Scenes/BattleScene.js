@@ -88,7 +88,7 @@ export default class BattleScene extends Phaser.Scene {
     
     this.space = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     
-    this.kraken = new Kraken(this, 400, 320, 0.9);
+    this.kraken = new Kraken(this, 400, 320);
     
     this.physics.add.collider(this.warrior, this.kraken, this.onAttack, false, this);  
     

@@ -50,6 +50,12 @@ export default class WorldScene extends Phaser.Scene {
 
     this.warrior.createAnimation();
 
+    this.anims.create({
+      key: 'rotate',
+      frames: this.anims.generateFrameNumbers('kraken', { frames: [6, 7, 8]}),
+      frameRate: 10,
+      repeat: -1
+    });
 
     this.spawns = this.add.group();
 
@@ -57,8 +63,8 @@ export default class WorldScene extends Phaser.Scene {
       var x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       var y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
 
-      let kraken = new Kraken(this, x, y);
-
+      let kraken = new Kraken(this, x, y, 0.2);
+      kraken.setScale(0.1);
       // parameters are x, y, width, height
       this.spawns.add(new Kraken(this, x, y));    
     }        

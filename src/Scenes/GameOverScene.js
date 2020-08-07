@@ -1,6 +1,7 @@
 import 'phaser';
 import config from '../Config/config';
 import Button from '../Objects/Button';
+import LocalStorage from '../Objects/LocalStorage';
 
 export default class GameOverScene extends Phaser.Scene {
   constructor () {
@@ -20,7 +21,7 @@ export default class GameOverScene extends Phaser.Scene {
     this.title = this.add.text(
       this.game.config.width * 0.5,
       200,
-      `Your score is: 123456`,
+      `Your score is: ${LocalStorage.readScore()}`,
       {
         fontFamily: 'monospace',
         fontSize: 32,
@@ -50,6 +51,8 @@ export default class GameOverScene extends Phaser.Scene {
       'Play Again',
       'World',
     );
+    
+    LocalStorage.saveScore('0');
+    
   }
-
 }

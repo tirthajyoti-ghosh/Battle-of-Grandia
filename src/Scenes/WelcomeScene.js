@@ -1,13 +1,9 @@
 import 'phaser';
+import LocalStorage from '../Objects/LocalStorage';
 
 export default class WelcomeScene extends Phaser.Scene {
   constructor() {
     super('Welcome');
-  }
-
-  saveName(name) {
-    console.log(name);
-    
   }
 
   create() {
@@ -24,7 +20,7 @@ export default class WelcomeScene extends Phaser.Scene {
 
     document.getElementById('button').onclick = () => {
       if (input.value !== '') {
-        this.saveName(input.value);
+        LocalStorage.saveName(input.value);
         
         this.scene.start('Title');
       } else {

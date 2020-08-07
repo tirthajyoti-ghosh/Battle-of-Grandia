@@ -1,5 +1,6 @@
 import 'phaser';
 import Warrior from '../Objects/Warrior';
+import Kraken from '../Objects/Kraken';
  
 export default class WorldScene extends Phaser.Scene {
   constructor () {
@@ -49,17 +50,20 @@ export default class WorldScene extends Phaser.Scene {
 
     this.warrior.createAnimation();
 
-    this.spawns = this.physics.add.group({ classType: Phaser.GameObjects.Zone });
+
+    this.spawns = this.add.group();
 
     for(var i = 0; i < 30; i++) {
       var x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       var y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
 
+      let kraken = new Kraken(this, x, y);
+
       // parameters are x, y, width, height
-      this.spawns.create(x, y, 50, 50);            
+      this.spawns.add(new Kraken(this, x, y));    
     }        
 
-    this.physics.add.overlap(this.warrior, this.spawns, this.onMeetEnemy, false, this);
+    this.physics.add.collider(this.warrior, this.spawns, this.onMeetEnemy, false, this);
 
   }
 

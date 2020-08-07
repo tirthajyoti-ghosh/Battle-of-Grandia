@@ -1,5 +1,4 @@
 import 'phaser';
-// import config from './Config/config';
 
 export default class Fireball extends Phaser.GameObjects.Sprite {
   constructor(scene, angle){

@@ -5,6 +5,7 @@ import Model from './Model';
 import WorldScene from './Scenes/WorldScene';
 import BattleScene from './Scenes/BattleScene';
 import GameOverScene from './Scenes/GameOverScene';
+import LeaderBoardScene from './Scenes/LeaderBoardScene';
 import BootScene from './Scenes/BootScene';
 import PreloaderScene from './Scenes/PreloaderScene';
 import TitleScene from './Scenes/TitleScene';
@@ -28,6 +29,7 @@ class Game extends Phaser.Game {
     this.scene.add('World', WorldScene);
     this.scene.add('Battle', BattleScene);
     this.scene.add('GameOver', GameOverScene);
+    this.scene.add('LeaderBoard', LeaderBoardScene);
     this.scene.start('Boot');
   }
 }

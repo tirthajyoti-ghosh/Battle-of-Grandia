@@ -5,19 +5,18 @@ export default class PreloaderScene extends Phaser.Scene {
     super('Preloader');
   }
 
-  init () {
+  init() {
     this.readyCount = 0;
   }
    
-  ready () {
-    this.scene.start('Battle');
+  ready() {
     this.readyCount++;
     if (this.readyCount === 2) {
-      this.scene.start('Title');
+      this.scene.start('Welcome');
     }
   }
  
-  preload () {
+  preload() {
     // add logo image
     this.add.image(400, 200, 'game-logo');
    

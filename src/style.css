@@ -1,0 +1,22 @@
+input {
+  margin-bottom: 60px;
+  margin-top: 180px;
+  margin-left: 90px;
+  height: 50px;
+  font-size: 32px;
+  width: 300px;
+}
+
+button {
+  border: none;
+  background: #1ba0de;
+  color: white;
+  font-size: 32px;
+  padding: 7px 5px;
+  margin-left: 130px;
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}

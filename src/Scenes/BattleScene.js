@@ -19,7 +19,7 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   showWinBanner() {
-    this.winText = this.add.text(330, 115, 'You Won!!', { fontSize: '26px', fill: '#000' });
+    this.winText = this.add.text(330, 115, 'You Won!!', { fontSize: '26px', fill: '#fff' });
     this.banner = this.add.graphics();
 
     this.banner.lineStyle(1, 0xffffff, 0.8);

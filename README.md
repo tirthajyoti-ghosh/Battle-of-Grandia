@@ -182,7 +182,7 @@ Project Link: [https://github.com/tirthajyoti-ghosh/Battle-of-Grandia](https://g
   - https://opengameart.org/content/spell-animation-spritesheets
   - https://opengameart.org/content/fire-explosion
   - https://opengameart.org/content/explosion-effect-pixel-art
-* README Icon made by <a href="https://www.flaticon.com/free-icon/rpg-game_2619285" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+* README and game icon made by <a href="https://www.flaticon.com/free-icon/rpg-game_2619285" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 * [Img Shields](https://shields.io)
 
 

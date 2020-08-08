@@ -13,9 +13,6 @@ export default class BattleScene extends Phaser.Scene {
 
     this.localStorage = LocalStorage;
 
-    this.warriorHealth = entity.warriorHealth;
-    this.krakenHealth = entity.krakenHealth;
-
     this.swordDamage = entity.swordDamage;
     this.fireballDamage = entity.fireballDamage;
   }
@@ -79,6 +76,9 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   create() {
+    this.warriorHealth = entity.warriorHealth;
+    this.krakenHealth = entity.krakenHealth;
+
     const battleMap = this.make.tilemap({ key: 'battle-map' });
 
     const tiles = battleMap.addTilesetImage('spritesheet', 'tiles');

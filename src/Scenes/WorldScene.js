@@ -2,6 +2,7 @@
 import 'phaser';
 import Warrior from '../Objects/Warrior';
 import Kraken from '../Objects/Kraken';
+import LocalStorage from '../Objects/LocalStorage';
 
 export default class WorldScene extends Phaser.Scene {
   constructor() {
@@ -28,7 +29,10 @@ export default class WorldScene extends Phaser.Scene {
     const obstacles = map.createStaticLayer('obstacles', tiles, 0, 0);
     obstacles.setCollisionByExclusion([-1]);
 
-    this.warrior = new Warrior(this, 25, 25);
+    const scoreText = this.add.text(15, 15, `Score: ${LocalStorage.readScore()}`, { fontSize: '20px', fill: '#000' });
+    scoreText.setScrollFactor(0);
+
+    this.warrior = new Warrior(this, 50, 50);
 
     this.physics.world.bounds.width = map.widthInPixels;
     this.physics.world.bounds.height = map.heightInPixels;

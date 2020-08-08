@@ -25,7 +25,7 @@ it('should return score', () => {
 });
 
 it('should save score and username', () => {
-  API.postScores("John Doe", 100).then(data => {
+  API.postScores('John Doe', 100).then(data => {
     expect(data.result).toBe('Leaderboard score created correctly.');
   }).catch(() => {});
 });
@@ -33,9 +33,5 @@ it('should save score and username', () => {
 it('should send an object to the API', () => {
   API.postScores().then(data => {
     expect(typeof data).toBe('object');
-    done();
   }).catch(() => {});
 });
-
-
-

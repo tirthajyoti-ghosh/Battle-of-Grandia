@@ -3,6 +3,7 @@ import 'phaser';
 import Fireball from '../Fireball';
 import Warrior from '../Objects/Warrior';
 import Kraken from '../Objects/Kraken';
+import entity from '../Config/EntityConfig';
 import LocalStorage from '../Objects/LocalStorage';
 import API from '../Objects/API';
 
@@ -11,6 +12,12 @@ export default class BattleScene extends Phaser.Scene {
     super('Battle');
 
     this.localStorage = LocalStorage;
+
+    this.warriorHealth = entity.warriorHealth;
+    this.krakenHealth = entity.krakenHealth;
+
+    this.swordDamage = entity.swordDamage;
+    this.fireballDamage = entity.fireballDamage;
   }
 
   writeScore() {
@@ -37,7 +44,7 @@ export default class BattleScene extends Phaser.Scene {
 
   onAttack() {
     if (Phaser.Input.Keyboard.JustDown(this.space)) {
-      this.krakenHealth -= 20;
+      this.krakenHealth -= this.swordDamage;
 
       this.swordFlash.x = this.warrior.x + 20;
       this.swordFlash.y = this.warrior.y - 20;
@@ -51,7 +58,7 @@ export default class BattleScene extends Phaser.Scene {
   damageWarrior(projectile) {
     projectile.destroy();
 
-    this.warriorHealth -= 10;
+    this.warriorHealth -= this.fireballDamage;
   }
 
   warriorDied() {
@@ -72,9 +79,6 @@ export default class BattleScene extends Phaser.Scene {
   }
 
   create() {
-    this.warriorHealth = 100;
-    this.krakenHealth = 1000;
-
     const battleMap = this.make.tilemap({ key: 'battle-map' });
 
     const tiles = battleMap.addTilesetImage('spritesheet', 'tiles');

@@ -24,7 +24,9 @@ const LocalStorage = (() => {
 
   const clearStorage = () => { localStorage.clear(); };
 
-  return { saveScore, readScore, saveName, readName, clearStorage };
+  return {
+    saveScore, readScore, saveName, readName, clearStorage,
+  };
 })();
 
 export default LocalStorage;

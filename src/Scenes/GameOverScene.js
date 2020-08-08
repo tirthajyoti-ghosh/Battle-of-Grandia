@@ -1,10 +1,11 @@
+/* eslint no-undef: 0 */
 import 'phaser';
 import config from '../Config/config';
 import Button from '../Objects/Button';
 import LocalStorage from '../Objects/LocalStorage';
 
 export default class GameOverScene extends Phaser.Scene {
-  constructor () {
+  constructor() {
     super('GameOver');
   }
 
@@ -51,8 +52,7 @@ export default class GameOverScene extends Phaser.Scene {
       'Play Again',
       'World',
     );
-    
+
     LocalStorage.saveScore('0');
-    
   }
 }

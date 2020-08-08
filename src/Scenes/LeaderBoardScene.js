@@ -1,4 +1,5 @@
-import 'phaser'; 
+/* eslint no-undef: 0 */
+import 'phaser';
 import Button from '../Objects/Button';
 import API from '../Objects/API';
 
@@ -9,7 +10,7 @@ export default class LeaderBoardScene extends Phaser.Scene {
 
   create() {
     API.getScores().then((data) => {
-      const result = data.result;
+      const { result } = data;
 
       result.sort((a, b) => b.score - a.score);
       this.add.text(195, 50, 'RANK      NAME                 SCORE');
@@ -24,7 +25,7 @@ export default class LeaderBoardScene extends Phaser.Scene {
         padding += 40;
       }
     });
-    
-    this.menuButton = new Button(this, 400, 500, 'blueButton1', 'blueButton2', 'Menu', 'Title');
+
+    this.menuButton = new Button(this, 400, 550, 'blueButton1', 'blueButton2', 'Menu', 'Title');
   }
 }

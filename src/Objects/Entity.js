@@ -1,3 +1,4 @@
+/* eslint no-undef: 0 */
 import 'phaser';
 
 export default class Entity extends Phaser.GameObjects.Sprite {

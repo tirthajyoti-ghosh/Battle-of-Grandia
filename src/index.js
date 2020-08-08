@@ -1,3 +1,4 @@
+/* eslint no-undef: 0 */
 import 'phaser';
 import './style.css';
 import config from './Config/config';
@@ -12,9 +13,9 @@ import TitleScene from './Scenes/TitleScene';
 import WelcomeScene from './Scenes/WelcomeScene';
 import OptionsScene from './Scenes/OptionsScene';
 import CreditsScene from './Scenes/CreditsScene';
- 
+
 class Game extends Phaser.Game {
-  constructor () {
+  constructor() {
     super(config);
 
     const model = new Model();
@@ -33,5 +34,5 @@ class Game extends Phaser.Game {
     this.scene.start('Boot');
   }
 }
- 
+
 window.game = new Game();

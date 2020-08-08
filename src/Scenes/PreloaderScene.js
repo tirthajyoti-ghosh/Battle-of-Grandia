@@ -1,5 +1,19 @@
 /* eslint no-undef: 0 */
 import 'phaser';
+import box from '../assets/ui/grey_box.png';
+import blueButton1 from '../assets/ui/blue_button1.png';
+import blueButton2 from '../assets/ui/blue_button2.png';
+import checkedBox from '../assets/ui/blue_boxCheckmark.png';
+import bgMusic from '../assets/TownTheme.mp3';
+
+import tiles from '../assets/map/spritesheet.png';
+import map from '../assets/map/map.json';
+import battleMap from '../assets/map/battle.json';
+import warrior from '../assets/hero_sprite.png';
+import fireball from '../assets/fireball.png';
+import explosion from '../assets/explosion.png';
+import swordFlash from '../assets/sword_flash.png';
+import kraken from '../assets/kraken.png';
 
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
@@ -90,34 +104,34 @@ export default class PreloaderScene extends Phaser.Scene {
     this.timedEvent = this.time.delayedCall(3000, this.ready, [], this);
 
     // load assets needed in our game
-    this.load.image('box', '../src/assets/ui/grey_box.png');
-    this.load.image('blueButton1', '../src/assets/ui/blue_button1.png');
-    this.load.image('blueButton2', '../src/assets/ui/blue_button2.png');
-    this.load.image('checkedBox', '../src/assets/ui/blue_boxCheckmark.png');
-    this.load.audio('bgMusic', ['../src/assets/TownTheme.mp3']);
+    this.load.image('box', box);
+    this.load.image('blueButton1', blueButton1);
+    this.load.image('blueButton2', blueButton2);
+    this.load.image('checkedBox', checkedBox);
+    this.load.audio('bgMusic', [bgMusic]);
 
     // map tiles
-    this.load.image('tiles', '../src/assets/map/spritesheet.png');
+    this.load.image('tiles', tiles);
 
     // map in json format
-    this.load.tilemapTiledJSON('map', '../src/assets/map/map.json');
+    this.load.tilemapTiledJSON('map', map);
 
     // battle map in json format
-    this.load.tilemapTiledJSON('battle-map', '../src/assets/map/battle.json');
+    this.load.tilemapTiledJSON('battle-map', battleMap);
 
     // hero spritesheet
-    this.load.spritesheet('warrior', '../src/assets/hero_sprite.png', { frameWidth: 32, frameHeight: 64 });
+    this.load.spritesheet('warrior', warrior, { frameWidth: 32, frameHeight: 64 });
 
     // fireball image
-    this.load.image('fireball', '../src/assets/fireball.png');
+    this.load.image('fireball', fireball);
 
     // explosion image
-    this.load.spritesheet('explosion', '../src/assets/explosion.png', { frameWidth: 400, frameHeight: 400 });
+    this.load.spritesheet('explosion', explosion, { frameWidth: 400, frameHeight: 400 });
 
     // sword flash image
-    this.load.spritesheet('sword_flash', '../src/assets/sword_flash.png', { frameWidth: 33, frameHeight: 33 });
+    this.load.spritesheet('sword_flash', swordFlash, { frameWidth: 33, frameHeight: 33 });
 
     // kraken spritesheet
-    this.load.spritesheet('kraken', '../src/assets/kraken.png', { frameWidth: 96, frameHeight: 128 });
+    this.load.spritesheet('kraken', kraken, { frameWidth: 96, frameHeight: 128 });
   }
 }

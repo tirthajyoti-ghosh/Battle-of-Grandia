@@ -73,17 +73,39 @@ This is a very simple RPG game where a warrior goes about his day exploring the 
 
 In your adventure, you will come acroos several of these fiery krakens that dotted the map. Once you defeat a Kraken, you earn points and are allowed to move with your life as an adventurer. You accumulate these points as you move forward defeating krakens after krakens. But once a Kraken manages to kill you, you will end up where every JS object ends up after getting `destroy` ed - the void. You will cease to exist and you will lose all your points.
 
+<!-- USAGE EXAMPLES -->
+## Instructions
+
+You will start your adventure with an
+
+* Welcome screen where you will put your name (so other players recognize you when they see your top scores!), then
+
+* You will be presented with four choices:
+  * Start playing the game, or
+  * Turn on/off the music, or
+  * A chance for you to be thankful for this game, or
+  * See where you stand in the Leaderboard.
+
+* Once you choose to start playing the game, you will be dropped in a beautiful and scenic world that you could only dream about. You can choose to explore or you can choose to engage with a Kraken. Mind you, the krakens will look small, but it's their disguise. When you engage,
+
+* You will be transported to their world where you have to battle the Kraken -
+
+  * You can move your character by `W` - forward, `A` - left, `S` - backward, `D`- right.
+  * **IMPORTANT!** As you have a sword, however powerful it may be, it's a melee weapon. So you have to be very close to the Kraken to make any damage. When you are very close to the Kraken,
+  * Press `SPACE` key to attack it, and
+  * Remember to not get hit by its fireballs.
+  
 This game sure sounds simple but it's not. Give it a try.
+
+## Live demo
+
+Deployed to Heroku - [live demo](https://thawing-river-75700.herokuapp.com/).
 
 ### Built With
 
 * Phaser 3
 * Webpack
 * ES6
-
-## Live demo
-
-Deployed to Raw Githack - [live demo](https://rawcdn.githack.com/tirthajyoti-ghosh/Battle-of-Grandia/0b69b93c02b080fa740a2ec65031f403675c142d/dist/index.html).
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -119,28 +141,6 @@ To get a local copy up and running follow these simple steps.
     ```
 
 4. Visit `http://localhost:8080/` in your browser.
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-You will start your adventure with an
-
-* Welcome screen where you will put your name (so other players recognize you when they see your top scores!), then
-
-* You will be presented with four choices:
-  * Start playing the game, or
-  * Turn on/off the music, or
-  * A chance for you to be thankful for this game, or
-  * See where you stand in the Leaderboard.
-
-* Once you choose to start playing the game, you will be dropped in a beautiful and scenic world that you could only dream about. You can choose to explore or you can choose to engage with a Kraken. Mind you, the krakens will look small, but it's their disguise. When you engage,
-
-* You will be transported to their world where you have to battle the Kraken -
-
-  * You can move your character by `W` - forward, `A` - left, `S` - backward, `D`- right.
-  * **IMPORTANT!** As you have a sword, however powerful it may be, it's a melee weapon. So you have to be very close to the Kraken to make any damage. When you are very close to the Kraken,
-  * Press `SPACE` key to attack it, and
-  * Remember to not get hit by its fireballs.
 
 <!-- ROADMAP -->
 ## Roadmap

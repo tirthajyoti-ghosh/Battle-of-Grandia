@@ -12,17 +12,10 @@ export default class BattleScene extends Phaser.Scene {
     super('Battle');
 
     this.localStorage = LocalStorage;
+    this.api = API;
 
     this.swordDamage = entity.swordDamage;
     this.fireballDamage = entity.fireballDamage;
-  }
-
-  writeScore() {
-    const updatedScore = parseInt(LocalStorage.readScore(), 10) + 100;
-
-    this.localStorage.saveScore(`${updatedScore}`);
-
-    API.postScores(LocalStorage.readName(), updatedScore);
   }
 
   showWinBanner() {
@@ -58,6 +51,12 @@ export default class BattleScene extends Phaser.Scene {
     this.warriorHealth -= this.fireballDamage;
   }
 
+  saveToLocalStorage() {
+    const updatedScore = parseInt(this.localStorage.readScore(), 10) + 100;
+
+    this.localStorage.saveScore(`${updatedScore}`);
+  }
+
   warriorDied() {
     this.scene.start('GameOver');
   }
@@ -69,8 +68,7 @@ export default class BattleScene extends Phaser.Scene {
     this.explosion.anims.play('explode', true);
 
     this.time.delayedCall(3000, () => {
-      this.writeScore();
-      this.scene.stop('Battle');
+      this.saveToLocalStorage();
       this.scene.start('World');
     }, [], this);
   }

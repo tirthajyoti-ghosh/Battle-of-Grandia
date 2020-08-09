@@ -20,6 +20,8 @@ import LocalStorage from '../Objects/LocalStorage';
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
     super('Preloader');
+
+    this.localStorage = LocalStorage;
   }
 
   init() {
@@ -27,11 +29,10 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   isNamePresent() {
-    if (LocalStorage.readName() !== null) {
+    if (this.localStorage.readName() !== null) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   ready() {

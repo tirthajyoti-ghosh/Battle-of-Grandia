@@ -6,7 +6,7 @@ const API = (() => {
   async function getScores() {
     try {
       const scores = await fetch(
-        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/ZKwPBFHJZA4kWLG0MFc9/scores',
+        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/awrtkiMDOOhi5bAP1ojY/scores',
         {
           method: 'GET',
           headers: {
@@ -25,7 +25,7 @@ const API = (() => {
   async function postScores(name, score) {
     try {
       const result = await fetch(
-        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/ZKwPBFHJZA4kWLG0MFc9/scores',
+        'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/awrtkiMDOOhi5bAP1ojY/scores',
         {
           method: 'POST',
           headers: {

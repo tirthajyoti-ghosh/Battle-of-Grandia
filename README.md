@@ -146,6 +146,13 @@ To get a local copy up and running follow these simple steps.
 <!-- ROADMAP -->
 ## Roadmap
 
+### Immediate
+
+* Pause scene - to pause/resume the game.
+* Add functionality to save progress and load from there.
+
+### Near future
+
 * Increase the complexity of the scoring system
 * Add more varities of entites
 * Add a complete map

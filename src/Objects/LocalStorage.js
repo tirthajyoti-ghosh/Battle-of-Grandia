@@ -15,10 +15,6 @@ const LocalStorage = (() => {
   const readName = () => {
     const name = JSON.parse(localStorage.getItem('name'));
 
-    if (!name) {
-      return `Player ${Math.floor((Math.random() * 100) + 1)}`;
-    }
-
     return name;
   };
 

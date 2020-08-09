@@ -15,6 +15,8 @@ import explosion from '../assets/explosion.png';
 import swordFlash from '../assets/sword_flash.png';
 import kraken from '../assets/kraken.png';
 
+import LocalStorage from '../Objects/LocalStorage';
+
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
     super('Preloader');
@@ -24,11 +26,22 @@ export default class PreloaderScene extends Phaser.Scene {
     this.readyCount = 0;
   }
 
+  isNamePresent() {
+    if (LocalStorage.readName() !== null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   ready() {
-    // this.scene.start('Battle');
     this.readyCount += 1;
     if (this.readyCount === 2) {
-      this.scene.start('Welcome');
+      if (this.isNamePresent()) {
+        this.scene.start('Title');
+      } else {
+        this.scene.start('Welcome');
+      }
     }
   }
 

@@ -105,6 +105,7 @@ Deployed to Heroku - [live demo](https://thawing-river-75700.herokuapp.com/).
 
 * Phaser 3
 * Webpack
+* Babel
 * ES6
 
 <!-- GETTING STARTED -->

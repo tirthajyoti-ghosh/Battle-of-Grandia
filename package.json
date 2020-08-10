@@ -1,24 +1,36 @@
 {
-  "name": "phaser3-project-template",
+  "name": "battle-of-grandia",
   "version": "1.1.0",
-  "description": "A Phaser 3 Project Template",
+  "description": "An adventure RPG game built with Phaser3.",
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --config webpack/prod.js",
     "start": "webpack-dev-server --config webpack/base.js",
     "test": "jest"
   },
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock"
+    ],
+    "setupFilesAfterEnv": [
+      "jest-expect-subclass"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/test/mocks/styleMock.js",
+      "\\.(gif|ttf|eot|svg|png|mp3)$": "<rootDir>/test/mocks/fileMock.js"
+    }
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/photonstorm/phaser3-project-template.git"
+    "url": "git+https://github.com/tirthajyoti-ghosh/Battle-of-Grandia.git"
   },
-  "author": "Richard Davey <rdavey@gmail.com> (http://www.photonstorm.com)",
+  "author": "Tirthajyoti Ghosh <itirthahere@gmail.com>",
   "license": "MIT",
   "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
   "bugs": {
-    "url": "https://github.com/photonstorm/phaser3-project-template/issues"
+    "url": "https://github.com/tirthajyoti-ghosh/Battle-of-Grandia/issues"
   },
-  "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
+  "homepage": "https://github.com/tirthajyoti-ghosh/Battle-of-Grandia#readme",
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.11.0",
@@ -29,6 +41,8 @@
     "eslint-plugin-import": "^2.20.2",
     "file-loader": "^4.2.0",
     "jest": "^26.2.2",
+    "jest-canvas-mock": "^2.2.0",
+    "jest-expect-subclass": "^1.0.1",
     "raw-loader": "^3.1.0",
     "style-loader": "^1.2.1",
     "stylelint": "^13.3.3",

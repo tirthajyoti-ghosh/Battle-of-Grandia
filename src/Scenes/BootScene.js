@@ -1,15 +1,17 @@
+/* eslint no-undef: 0 */
 import 'phaser';
- 
+import gameLogo from '../assets/rpg-game.png';
+
 export default class BootScene extends Phaser.Scene {
-  constructor () {
+  constructor() {
     super('Boot');
   }
- 
-  preload () {
-    this.load.image('game-logo', '../src/assets/zenva_logo.png');
+
+  preload() {
+    this.load.image('game-logo', gameLogo);
   }
- 
-  create () {
+
+  create() {
     this.scene.start('Preloader');
   }
-};
+}

@@ -1,4 +1,5 @@
 /* eslint no-undef: 0 */
+/* eslint class-methods-use-this: 0 */
 import 'phaser';
 import Fireball from '../Fireball';
 import Warrior from '../Objects/Warrior';
@@ -32,9 +33,13 @@ export default class BattleScene extends Phaser.Scene {
     (() => new Fireball(this, angle))();
   }
 
+  updateKrakenHealth(krakenHealth, damage) {
+    return krakenHealth - damage;
+  }
+
   onAttack() {
     if (Phaser.Input.Keyboard.JustDown(this.space)) {
-      this.krakenHealth -= this.swordDamage;
+      this.krakenHealth = this.updateKrakenHealth(this.krakenHealth, this.swordDamage);
 
       this.swordFlash.x = this.warrior.x + 20;
       this.swordFlash.y = this.warrior.y - 20;
@@ -45,10 +50,14 @@ export default class BattleScene extends Phaser.Scene {
     }
   }
 
+  updateWarriorHealth(warriorHealth, damage) {
+    return warriorHealth - damage;
+  }
+
   damageWarrior(projectile) {
     projectile.destroy();
 
-    this.warriorHealth -= this.fireballDamage;
+    this.warriorHealth = this.updateWarriorHealth(this.warriorHealth, this.fireballDamage);
   }
 
   saveToLocalStorage() {

@@ -1,3 +1,4 @@
+/* eslint no-undef: 0 */
 import Kraken from '../src/Objects/Kraken';
 import Entity from '../src/Objects/Entity';
 

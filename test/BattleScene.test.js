@@ -1,3 +1,4 @@
+/* eslint no-undef: 0 */
 import BattleScene from '../src/Scenes/BattleScene';
 
 const scene = new BattleScene();

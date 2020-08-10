@@ -1,3 +1,4 @@
+/* eslint no-undef: 0 */
 import WorldScene from '../src/Scenes/WorldScene';
 
 test('WorldScene is a subclass of Phaser.Scene', () => {

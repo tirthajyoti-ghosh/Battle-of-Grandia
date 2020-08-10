@@ -1,3 +1,4 @@
+/* eslint no-undef: 0 */
 import Warrior from '../src/Objects/Warrior';
 import Entity from '../src/Objects/Entity';
 
